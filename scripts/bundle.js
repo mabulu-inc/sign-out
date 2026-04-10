@@ -27,7 +27,8 @@ cpSync(resolve(root, 'package.json'), resolve(staging, 'package.json'));
 cpSync(resolve(root, 'pnpm-lock.yaml'), resolve(staging, 'pnpm-lock.yaml'));
 
 // Install production deps only
-execSync('pnpm install --prod --frozen-lockfile', {
+// Lambda doesn't follow symlinks, so hoist deps into a flat node_modules.
+execSync('pnpm install --prod --frozen-lockfile --node-linker=hoisted', {
   cwd: staging,
   stdio: 'inherit',
 });
