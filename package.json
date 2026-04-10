@@ -13,7 +13,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "bundle": "pnpm run build && node scripts/bundle.js"
+    "bundle": "pnpm run build && node scripts/bundle.js",
+    "release": "git push origin main --follow-tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes"
   },
   "engines": {
     "node": ">=20"
