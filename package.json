@@ -14,7 +14,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "bundle": "pnpm run build && node scripts/bundle.js",
-    "release": "git push origin main --follow-tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes"
+    "release": "release-it"
   },
   "engines": {
     "node": ">=20"
@@ -33,6 +33,7 @@
     "eslint": "^10.2.0",
     "typescript": "^6.0.2",
     "typescript-eslint": "^8.58.1",
+    "release-it": "^19.2.4",
     "vitest": "^4.1.4"
   }
 }
