@@ -1,6 +1,6 @@
 {
   "name": "sign-out",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "Lambda handler for sign-out. Soft-expires the session via @smplcty/auth revokeSession.",
   "license": "MIT",
