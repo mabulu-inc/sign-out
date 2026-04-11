@@ -1,5 +1,4 @@
 {
-  "ci": true,
   "git": {
     "requireCleanWorkingDir": true,
     "requireUpstream": true,
