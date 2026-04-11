@@ -20,7 +20,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "@smplcty/auth": "^0.4.0",
+    "@smplcty/auth": "^0.5.3",
     "@smplcty/logging": "^1.3.0",
     "pg": "^8.20.0"
   },
