@@ -8,7 +8,15 @@ export const handler = async (
 ): Promise<APIGatewayProxyResult> => {
   console.debug('event', event);
 
-  const body: unknown = JSON.parse(event.body ?? '{}');
+  let body: unknown;
+  try {
+    body = JSON.parse(event.body ?? '{}');
+  } catch {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ message: 'Invalid JSON' }),
+    };
+  }
 
   if (typeof body !== 'object' || body === null) {
     return {
@@ -26,8 +34,16 @@ export const handler = async (
     };
   }
 
-  const db = await getPool();
-  await revokeSession(db, session_id);
+  try {
+    const db = await getPool();
+    await revokeSession(db, session_id);
 
-  return { statusCode: 200, body: '' };
+    return { statusCode: 200, body: '' };
+  } catch (err) {
+    console.error('/sign-out error:', err);
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ message: 'Internal server error' }),
+    };
+  }
 };
